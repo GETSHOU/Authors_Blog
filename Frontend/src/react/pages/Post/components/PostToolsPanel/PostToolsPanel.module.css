@@ -1,0 +1,42 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.wrapperWithoutInfo {
+	justify-content: flex-end;
+}
+
+.tools {
+	display: flex;
+	align-items: center;
+	justify-self: flex-end;
+}
+
+.button {
+	margin-right: 15px;
+}
+
+.button:last-child {
+	margin-right: 0;
+}
+
+.postInfo {
+	display: flex;
+	align-items: center;
+}
+
+.postInfoText {
+	display: inline-flex;
+}
+
+.postDate {
+	font-weight: 500;
+	color: #858585;
+}
+
+.title {
+	font-weight: 500;
+}

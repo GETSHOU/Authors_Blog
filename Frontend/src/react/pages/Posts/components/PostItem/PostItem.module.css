@@ -1,0 +1,179 @@
+.postItem {
+	display: flex;
+	flex-direction: column;
+	width: calc(50% - 30px);
+	height: 350px;
+	margin: 15px;
+	box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.postLink {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: var(--all-transition-hover);
+}
+
+.postLink::before,
+.postLink::after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	transition: var(--all-transition-hover);
+}
+
+.postLink::after {
+	opacity: 1;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 1) 10%,
+		rgba(0, 0, 0, 0) 100%
+	);
+}
+
+.postLink::before {
+	opacity: 0;
+	background: rgb(64, 87, 95);
+	background: linear-gradient(
+		0deg,
+		rgba(64, 87, 95, 0.9) 0%,
+		rgba(64, 87, 95, 0.9) 10%,
+		rgba(64, 87, 95, 0) 100%
+	);
+}
+
+.postLink:hover::before {
+	opacity: 1;
+}
+
+.postLink:hover::after {
+	opacity: 0;
+}
+
+.postImage {
+	height: 100%;
+	object-fit: cover;
+}
+
+.postInfo {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	padding: 0 25px 25px;
+	z-index: 1;
+}
+
+.postTitle {
+	font-size: 1.5rem;
+	line-height: 2rem;
+	font-weight: 500;
+	color: var(--secondary-color);
+}
+
+.postInfoText {
+	display: inline;
+	justify-self: flex-start;
+	font-size: 1rem;
+	color: var(--secondary-color);
+}
+
+.postDate {
+	display: flex;
+	flex-direction: column;
+}
+
+.postDate {
+	margin-right: 30px;
+}
+
+.postInfoTitle {
+	margin-bottom: 15px;
+	color: #c1c1c1;
+}
+
+.postInfoHeader {
+	display: flex;
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.postInfoCenter {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+.postInfoFooter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+	width: 100%;
+}
+
+.postCommentsCount {
+	margin-left: 15px;
+	padding-top: 4px;
+	color: var(--secondary-color);
+}
+
+/* Стили для первого поста */
+
+.postItem:first-child {
+	flex-direction: initial;
+	width: 100%;
+	height: 640px;
+	margin-top: 0;
+}
+
+.postItem:first-child .postTitle {
+	font-size: 2.7rem;
+	line-height: 3.2rem;
+}
+
+.postItem:first-child .postInfoTitle {
+	font-size: 1.3rem;
+}
+
+.postItem:first-child .postInfoText {
+	font-size: 1.3rem;
+}
+
+.postItem:first-child .postInfoHeader {
+	margin-bottom: 20px;
+}
+
+.postItem:first-child .postInfoCenter {
+	margin-bottom: 20px;
+}
+
+.postItem:first-child .postLink::after {
+	background: linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 1) 10%,
+		rgba(0, 0, 0, 0) 100%
+	);
+}
+
+.postItem:first-child .postLink::before {
+	background: linear-gradient(
+		0deg,
+		rgba(64, 87, 95, 0.9) 0%,
+		rgba(64, 87, 95, 0.9) 10%,
+		rgba(64, 87, 95, 0) 100%
+	);
+}

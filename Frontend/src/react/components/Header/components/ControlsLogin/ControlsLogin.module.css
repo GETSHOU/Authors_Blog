@@ -1,0 +1,34 @@
+.controls {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.userName {
+	margin-right: 15px;
+	font-size: 24px;
+	color: var(--secondary-color);
+}
+
+.link {
+	display: flex;
+	align-items: center;
+}
+
+.linkText {
+	margin-right: 10px;
+	font-size: 1.3rem;
+	font-weight: 500;
+	color: var(--secondary-color);
+	transition: var(--all-transition-hover);
+}
+
+.linkText:last-child {
+	margin-right: 0;
+}
+
+.link:hover .linkText,
+.link:hover i {
+	color: var(--main-color);
+}

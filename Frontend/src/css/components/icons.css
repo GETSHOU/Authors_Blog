@@ -1,0 +1,53 @@
+.icon {
+	color: var(--main-color);
+	transition: var(--all-transition-hover);
+}
+
+.icon--dark {
+	color: var(--main-color);
+}
+
+.icon--light {
+	color: var(--secondary-color);
+}
+
+.icon--1-2r {
+	font-size: 1.2rem !important;
+}
+
+.icon--1-5r {
+	font-size: 1.5rem !important;
+}
+
+.icon--1-6r {
+	font-size: 1.6rem !important;
+}
+
+.icon--2r {
+	font-size: 2rem !important;
+}
+
+.icon--5r {
+	font-size: 5rem !important;
+}
+
+.icon--disabled {
+	color: rgba(var(--code-black-color), 0.3) !important;
+}
+
+.icon--save:hover {
+	color: var(--green);
+}
+
+.icon--trash:hover {
+	color: var(--red);
+}
+
+.icon--send:hover {
+	/* TODO: Переделать стили иконок */
+	color: var(--blue);
+}
+
+.icon--edit:hover {
+	color: var(--blue);
+}

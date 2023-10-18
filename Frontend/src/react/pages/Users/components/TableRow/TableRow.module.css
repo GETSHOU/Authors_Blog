@@ -1,0 +1,76 @@
+/*
+	flex-grow: 1 - разрешает элементу растягиваться
+	flex-shrink: 0 - запрещает элементу сжиматься меньше значения flex-basis
+	flex-basis: 300px - задает базовый размер элемента в 300px
+	flex: [flex-grow] [flex-shrink] [flex-basis]
+*/
+
+.tableRow {
+	display: flex;
+	width: 100%;
+	padding: var(--p-10);
+}
+
+.tableRow:first-child {
+	margin-bottom: 15px;
+}
+
+.tableTitles {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.tableTitles .tableCell {
+	font-weight: 700;
+}
+
+.tableTitles .tableCell:last-child,
+.tableCell:last-child {
+	justify-content: center;
+	flex: 0;
+	min-width: 100px;
+	width: 100%;
+}
+
+.tableCell {
+	display: flex;
+	align-items: center;
+	flex: 1 0 210px;
+	width: 100%;
+	margin: 0 10px;
+}
+
+.select {
+	width: 100%;
+	padding: 10px 20px 10px 5px;
+	cursor: pointer;
+	outline: 1px solid var(--main-color);
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1.2rem;
+	color: var(--main-color);
+	transition: var(--all-transition-hover);
+}
+
+.select:focus {
+	outline: 1px solid var(--blue);
+	box-shadow: 0 0 5px 0 rgba(var(--code-blue-color), 0.5);
+}
+
+.actionsWrapper {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.actions {
+	display: flex;
+}
+
+.actionButton {
+	margin-right: 15px;
+}
+
+.actionButton:last-child {
+	margin-right: 0;
+}

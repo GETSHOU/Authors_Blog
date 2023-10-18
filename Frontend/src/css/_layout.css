@@ -1,0 +1,32 @@
+html,
+body,
+#root {
+	height: 100%;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+html {
+	min-width: 1170px;
+	font-size: 16px;
+	line-height: 1;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	color: var(--main-color);
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+	color: transparent;
+}
+
+input::placeholder,
+textarea::placeholder {
+	color: var(--placeholder-color);
+}

@@ -1,0 +1,34 @@
+.logoWrapper {
+	flex: 1;
+	display: flex;
+	margin-right: 20px;
+}
+
+.logo {
+	margin-right: 20px;
+	font-size: 80px;
+}
+
+.logoTitle {
+	color: var(--secondary-color);
+}
+
+.logoTitle span:nth-child(1) {
+	font-size: 50px;
+	font-weight: 500;
+}
+
+.link {
+	display: flex;
+	align-items: center;
+}
+
+.link .logo i,
+.link .logoTitle {
+	transition: var(--all-transition-hover);
+}
+
+.link:hover .logo i,
+.link:hover .logoTitle {
+	color: var(--main-color);
+}

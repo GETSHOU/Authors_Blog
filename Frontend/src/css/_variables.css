@@ -1,0 +1,40 @@
+:root {
+	--code-black-color: 28, 28, 28;
+	--code-white-color: 250, 250, 250;
+	--code-grey-color: 185, 185, 185;
+	--code-red-color: 159, 16, 0;
+	--code-green-color: 16, 159, 0;
+	--code-blue-color: 26, 115, 232;
+	--code-dark-blue-color: 5, 30, 52;
+	--code-light-blue-color: 102, 157, 246;
+	--code-dark-green-color: 64, 87, 95;
+	--code-light-green-color: 91, 124, 135;
+
+	--black: rgb(var(--code-black-color));
+	--white: rgb(var(--code-white-color));
+	--grey: rgb(var(--code-grey-color));
+	--red: rgb(var(--code-red-color));
+	--green: rgb(var(--code-green-color));
+	--blue: rgb(var(--code-blue-color));
+	--dark-blue: rgb(var(--code-dark-blue-color));
+	--light-blue: rgb(var(--code-light-blue-color));
+	--dark-green: rgb(var(--code-dark-green-color));
+	--light-green: rgb(var(--code-light-green-color));
+
+	--p-20: 20px;
+	--p-10: 10px;
+
+	--main-theme-color: var(--dark-green);
+	--main-color: var(--black);
+	--secondary-color: var(--white);
+	--error-color: var(--red);
+	--placeholder-color: var(--grey);
+
+	--nav-item-boxshadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+	--nav-item-bg-hover: rgba(255, 255, 255, 0.08);
+	--nav-section-title-color: rgba(255, 255, 255, 0.5);
+	--all-transition-hover: all 0.2s ease;
+	--aside-width-admin: 250px;
+	--min-page-width: 320px;
+	--input-focus-outline: var(--blue) auto 1px;
+}

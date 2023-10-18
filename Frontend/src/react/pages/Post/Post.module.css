@@ -1,0 +1,9 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 30px var(--p-20);
+	background-color: aliceblue;
+	border-radius: 10px;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+}

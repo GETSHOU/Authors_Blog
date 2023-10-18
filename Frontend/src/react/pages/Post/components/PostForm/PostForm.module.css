@@ -1,0 +1,83 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.title {
+	margin-bottom: 30px;
+	font-weight: 500;
+	font-size: 1.7rem;
+	line-height: 2rem;
+}
+
+.content {
+	flex-direction: column;
+	width: 100%;
+}
+
+.image {
+	margin-bottom: 35px;
+}
+
+.fields {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.input {
+	height: 50px;
+	padding: 10px;
+	margin-bottom: 30px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1.2rem;
+	line-height: 1.7rem;
+	color: var(--main-color);
+}
+
+.input:last-child {
+	margin-bottom: 0;
+}
+
+.input:focus {
+	outline: var(--input-focus-outline);
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.textEdit {
+	padding: 10px;
+	background-color: #ffffff;
+}
+
+.textEdit:focus-visible {
+	outline: var(--input-focus-outline);
+}
+
+.text p,
+.textEdit {
+	font-size: 1.2rem;
+	line-height: 1.7rem;
+}
+
+.text p {
+	margin-bottom: 10px;
+	text-indent: 50px;
+}
+
+.text p:last-child {
+	margin-bottom: 0;
+}

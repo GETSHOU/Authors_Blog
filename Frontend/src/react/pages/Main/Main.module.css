@@ -1,0 +1,51 @@
+/* TODO: .wrapper вынести на самый верх */
+
+.pageWrapper {
+	position: relative;
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.mainContentWrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.mainContentWrapper.adminContentWrapper {
+	margin-left: var(--aside-width-admin);
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	align-items: center;
+	background: var(--main-theme-color);
+}
+
+.headerWrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 30px 0 0;
+}
+
+.footerWrapper {
+	display: flex;
+	justify-content: center;
+	padding: 20px 0;
+	width: 100%;
+	background-color: var(--main-color);
+}
+
+.contentWrapper {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	align-items: center;
+	width: 100%;
+	padding: 50px 0;
+}

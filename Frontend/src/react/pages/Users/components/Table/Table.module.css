@@ -1,0 +1,16 @@
+.tableWrapper {
+	display: inline-flex;
+	align-self: center;
+	min-width: 830px;
+	max-width: 70%;
+	background: var(--secondary-color);
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+
+.table {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: var(--p-20) 0;
+}

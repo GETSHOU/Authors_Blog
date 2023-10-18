@@ -1,0 +1,66 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	width: 400px;
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.main {
+	display: flex;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+}
+
+.title {
+	font-size: 2rem;
+	font-weight: 500;
+	color: var(--secondary-color);
+}
+
+.text {
+	color: var(--secondary-color);
+}
+
+.link {
+	padding-left: 10px;
+	color: var(--secondary-color);
+	font-weight: 500;
+	transition: all 0.2s ease;
+}
+
+.link:hover {
+	color: var(--main-color);
+}
+
+/* Form */
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.fieldsWrapper {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+.buttonsWrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
