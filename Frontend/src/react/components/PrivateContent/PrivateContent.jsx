@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { userRoleSelector } from '../../store/selectors';
-import { checkAccess } from '../../../js/utils';
-import { ERROR, PROP_TYPE } from '../../../js/constants';
+import { checkAccess } from '../../../utils';
+import { ERROR, PROP_TYPE } from '../../../constants';
 import { Error } from '../Error/Error';
 
 
 export const PrivateContent = ({ children, access, serverError = null}) => {
-	const userRole = useSelector(userRoleSelector);
+	const roleId = useSelector(userRoleSelector);
 
-	const accessError = checkAccess(access, userRole) ? null : ERROR.ACCESS_DENIED;
+	const accessError = checkAccess(access, roleId) ? null : ERROR.ACCESS_DENIED;
 	const error = serverError || accessError;
 
 	return error ? <Error error={error}/> : children;

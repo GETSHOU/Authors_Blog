@@ -1,21 +1,19 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { useServerRequest } from '../../../../../../hooks';
 import { closeModal, openModal, removeCommentAsync } from '../../../../../../store/actions';
 import { userRoleSelector } from '../../../../../../store/selectors';
-import { checkAccess } from '../../../../../../../js/utils';
-import { ROLES } from '../../../../../../../js/constants';
+import { checkAccess } from '../../../../../../../utils';
+import { ROLES } from '../../../../../../../constants';
 import { Avatar } from '../../../../../../components';
 import styles from './Comment.module.css';
 
 export const Comment = ({ postId, commentId, author, content, publishedAt }) => {
-	const userRole = useSelector(userRoleSelector);
+	const roleId = useSelector(userRoleSelector);
 	const dispatch = useDispatch();
-	const requestServer = useServerRequest();
 
 	const handlerConfirm = (postId, commentId) => {
 		return () => {
-			dispatch(removeCommentAsync(requestServer, postId, commentId));
+			dispatch(removeCommentAsync(postId, commentId));
 			dispatch(closeModal());
 		};
 	};
@@ -40,7 +38,7 @@ export const Comment = ({ postId, commentId, author, content, publishedAt }) => 
 		)
 	};
 
-	const isAdminOrModerator = checkAccess([ROLES.ADMIN, ROLES.MODERATOR], userRole);
+	const isAdminOrModerator = checkAccess([ROLES.ADMIN, ROLES.MODERATOR], roleId);
 
 	return (
 		<div className={styles.commentWrapper}>

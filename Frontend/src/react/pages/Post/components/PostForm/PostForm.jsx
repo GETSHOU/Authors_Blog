@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { PROP_TYPE } from '../../../../../js/constants';
+import { PROP_TYPE } from '../../../../../constants';
 import { PostToolsPanel } from '../PostToolsPanel/PostToolsPanel';
 import styles from './PostForm.module.css';
 
@@ -26,10 +26,28 @@ export const PostForm = ({post: {id, title, publishedAt, imageUrl, content}}) =>
 			<main className={styles.content}>
 				<div className={styles.wrapper}>
 					<div className={styles.fields}>
-						<input className={styles.input} type="text" value={fieldValueTitle} placeholder='Заголовок...' onChange={handlerChangeTitle} />
-						<input className={styles.input} type="text" value={fieldValueImageUrl} placeholder='Изображение...' onChange={handlerChangeImage} />
+						<input
+							className={styles.input}
+							type="text"
+							value={fieldValueTitle}
+							placeholder='Заголовок...'
+							onChange={handlerChangeTitle}
+						/>
+						<input
+							className={styles.input}
+							type="text"
+							value={fieldValueImageUrl}
+							placeholder='Изображение...'
+							onChange={handlerChangeImage}
+						/>
 					</div>
-					<div className={`${styles.text} ${styles.textEdit}`} role='textbox' aria-multiline='true' ref={contentRef} contentEditable={true} suppressContentEditableWarning>{content}</div>
+					<div
+						className={`${styles.text} ${styles.textEdit}`}
+						ref={contentRef}
+						contentEditable={true}
+						suppressContentEditableWarning={true}>
+							{content}
+					</div>
 				</div>
 			</main>
 		</article>

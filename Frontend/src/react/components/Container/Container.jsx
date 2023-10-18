@@ -1,4 +1,4 @@
-import { PROP_TYPE } from '../../../js/constants';
+import { PROP_TYPE } from '../../../constants';
 import styles from './Container.module.css';
 
 export const Container = ({children}) => (

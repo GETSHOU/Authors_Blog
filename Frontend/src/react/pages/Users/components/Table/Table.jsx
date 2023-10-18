@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { ROLE } from '../../../../../js/bff/server-constants';
-import { PROP_TYPE } from '../../../../../js/constants';
+import { PROP_TYPE, ROLES } from '../../../../../constants';
 import { TableRow } from '../TableRow/TableRow';
 import styles from './Table.module.css';
 
@@ -14,7 +13,7 @@ export const Table = ({users, roles, shouldUpdateUserList, setShouldUpdateUserLi
 						<TableRow
 							key={id}
 							login={login}
-							roles={roles.filter(({id: roleId}) => roleId !== ROLE.GUEST)}
+							roles={roles.filter(({id: roleId}) => roleId !== ROLES.GUEST)}
 							userId={id}
 							roleId={roleId}
 							registeredAt={registeredAt}

@@ -1,5 +1,5 @@
 import { PostToolsPanel } from '../PostToolsPanel/PostToolsPanel';
-import { PROP_TYPE } from '../../../../../js/constants';
+import { PROP_TYPE } from '../../../../../constants';
 import styles from './PostContent.module.css';
 
 export const PostContent = ({post: {id, title, publishedAt, imageUrl, content}}) => {

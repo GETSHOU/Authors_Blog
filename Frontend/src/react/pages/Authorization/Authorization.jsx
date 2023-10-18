@@ -6,11 +6,10 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useResetForm } from '../../hooks';
-import { server } from '../../../js/bff';
-import { ROLES } from '../../../js/constants';
+import { ROLES } from '../../../constants';
 import { setUserAction } from '../../store/actions';
 import { userRoleSelector } from '../../store/selectors';
-import { checkAccess } from '../../../js/utils';
+import { checkAccess, request } from '../../../utils';
 import { FormField, FormButton, ErrorForm } from '../../components/Form/components';
 import styles from './Authorization.module.css';
 
@@ -35,7 +34,7 @@ export const Authorization = ({title}) => {
 	const [showError, setShowError] = useState(false);
 
 	const dispatch = useDispatch();
-	const userRole = useSelector(userRoleSelector);
+	const roleId = useSelector(userRoleSelector);
 
 	const {
 		register,
@@ -53,21 +52,21 @@ export const Authorization = ({title}) => {
 	useResetForm(reset);
 
 	const onSubmit = ({ login, password }) => {
-		server.authorization(login, password).then(({ error, response }) => {
+		request('/login', 'POST',{login, password}).then(({ error, user }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				setShowError(true);
 				return;
 			}
 
-			dispatch(setUserAction(response));
-			sessionStorage.setItem('userData', JSON.stringify(response));
+			dispatch(setUserAction(user));
+			sessionStorage.setItem('userData', JSON.stringify(user));
 		});
 	};
 
 	const loginErrorMessage = errors?.login?.message;
 	const passwordErrorMessage = errors?.password?.message;
-	const isGuest = checkAccess([ROLES.GUEST], userRole);
+	const isGuest = checkAccess([ROLES.GUEST], roleId);
 
 	if(!isGuest) {
 		return <Navigate to='/' />;
@@ -97,7 +96,7 @@ export const Authorization = ({title}) => {
 			</main>
 			<footer className={styles.footer}>
 				<span className={styles.text}>Не зарегистрированы?
-					<Link to='/registration' className={styles.link}>Создать аккаунт</Link>
+					<Link to='/register' className={styles.link}>Создать аккаунт</Link>
 				</span>
 			</footer>
 		</div>

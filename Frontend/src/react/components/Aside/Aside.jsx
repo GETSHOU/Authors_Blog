@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutAction } from '../../store/actions';
-import { userLoginSelector, userSessionSelector } from '../../store/selectors';
+import { logout } from '../../store/actions';
+import { userLoginSelector } from '../../store/selectors';
 import { Avatar } from '../Avatar/Avatar';
 import styles from './Aside.module.css';
 
 export const Aside = () => {
 	const dispatch = useDispatch();
 	const login = useSelector(userLoginSelector);
-	const session = useSelector(userSessionSelector);
+
+	// TODO: Копия функции onLogout()
+	const onLogout = () => {
+		dispatch(logout());
+		sessionStorage.removeItem('userData');
+	}
 
 	return (
 		<aside className={styles.navMenu}>
@@ -21,10 +26,10 @@ export const Aside = () => {
 				</div>
 				<h2 className={styles.userName}>{login}</h2>
 				<div className={styles.controls}>
-					<Link to='/' className={styles.controlLink} onClick={() => dispatch(logoutAction(session))}>
+					<span className={styles.controlLink} onClick={onLogout}>
 						<span className={styles.textLink}>Выйти</span>
 						<i className='fa fa-sign-out icon--light icon--1-5r' aria-hidden='true'></i>
-					</Link>
+					</span>
 				</div>
 			</div>
 			<ul className={styles.list}>

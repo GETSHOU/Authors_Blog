@@ -1,9 +1,10 @@
-import { setPostData } from './';
+import { setPostData } from './set-post-data';
+import { request } from '../../../utils';
 
-export const loadPostAsync = (requestServer, postId) => (dispatch) =>
-	requestServer('fetchPost', postId).then((postData) => {
-		if (postData.response) {
-			dispatch(setPostData(postData.response));
+export const loadPostAsync = (postId) => (dispatch) =>
+	request(`/posts/${postId}`).then((postData) => {
+		if (postData.data) {
+			dispatch(setPostData(postData.data));
 		}
 
 		return postData;

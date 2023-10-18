@@ -1,4 +1,4 @@
-import { PROP_TYPE } from '../../../js/constants';
+import { PROP_TYPE } from '../../../constants';
 import styles from './Error.module.css';
 
 export const Error = ({ error }) => {

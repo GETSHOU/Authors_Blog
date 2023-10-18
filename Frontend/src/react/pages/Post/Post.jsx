@@ -1,10 +1,9 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMatch, useParams } from 'react-router-dom';
-import { useServerRequest } from '../../hooks';
 import { loadPostAsync, resetPostData } from '../../store/actions';
 import { postSelector } from '../../store/selectors';
-import { ROLES } from '../../../js/constants';
+import { ROLES } from '../../../constants';
 import { PostContent, Comments, PostForm } from './components';
 import { Error, PrivateContent } from '../../components';
 import styles from './Post.module.css';
@@ -13,7 +12,6 @@ export const Post = () => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const requestServer = useServerRequest();
 	const dispatch = useDispatch();
 	const params = useParams();
 	const post = useSelector(postSelector);
@@ -22,7 +20,7 @@ export const Post = () => {
 	const isCreating = !!useMatch('/post');
 
 	useLayoutEffect(() => {
-		dispatch(resetPostData());
+		dispatch(resetPostData);
 	}, [dispatch, isCreating]);
 
 	useEffect(() => {
@@ -31,11 +29,11 @@ export const Post = () => {
 			return;
 		}
 
-		dispatch(loadPostAsync(requestServer, params.id)).then((postData) => {
+		dispatch(loadPostAsync(params.id)).then((postData) => {
 			setError(postData.error);
 			setIsLoading(false);
 		});
-	}, [isCreating, requestServer, dispatch, params.id]);
+	}, [dispatch, params.id, isCreating]);
 
 	if (isLoading) {
 		return null;

@@ -5,10 +5,8 @@ import { Provider } from 'react-redux';
 import { store } from './react/store/store';
 import { Main, Posts, Authorization, Registration, Users, Post } from './react/pages';
 import { Error } from './react/components';
-import { ERROR } from './js/constants';
+import { ERROR } from './constants';
 import './css/index.css';
-
-// json-server --watch src/data/db.json --port 3005
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,12 +15,9 @@ root.render(
 			<Routes>
 				<Route path="/" element={<Main />}>
 					<Route index element={<Posts />} />
+					<Route path="login" element={<Authorization title="Авторизация" />} />
 					<Route
-						path="authorization"
-						element={<Authorization title="Авторизация" />}
-					/>
-					<Route
-						path="registration"
+						path="register"
 						element={<Registration title="Регистрация" />}
 					/>
 					<Route path="post" element={<Post />}>

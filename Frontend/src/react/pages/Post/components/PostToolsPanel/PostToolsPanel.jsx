@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMatch, useNavigate } from 'react-router-dom';
-import { useServerRequest } from '../../../../hooks';
 import { closeModal, openModal, removePostAsync, savePostAsync } from '../../../../store/actions';
 import { userRoleSelector } from '../../../../store/selectors';
-import { checkAccess } from '../../../../../js/utils';
-import { ROLES } from '../../../../../js/constants';
+import { checkAccess } from '../../../../../utils';
+import { ROLES } from '../../../../../constants';
 import styles from './PostToolsPanel.module.css';
 
 export const PostToolsPanel = ({
@@ -16,28 +15,26 @@ export const PostToolsPanel = ({
 	fieldValueImageUrl,
 }) => {
 
-	const userRole = useSelector(userRoleSelector);
-	const requestServer = useServerRequest();
+	const roleId = useSelector(userRoleSelector);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const isEditing = useMatch('/post/:id/edit');
 	const isCreating = useMatch('/post');
 
-	const handlerSave = (id) => {
+	const handlerSave = () => {
 		const newContent = contentRef.current.innerText;
 
-		dispatch(savePostAsync(requestServer, {
-				id,
-				content: newContent,
-				title: fieldValueTitle,
-				imageUrl: fieldValueImageUrl,
-			})
+		dispatch(savePostAsync(postId, {
+			content: newContent,
+			title: fieldValueTitle,
+			imageUrl: fieldValueImageUrl,
+		})
 		).then(({ id }) => navigate(`/post/${id}`));
 	};
 
 	const handlerConfirm = (id) => {
 		return () => {
-			dispatch(removePostAsync(requestServer, id)).then(() => navigate('/'));
+			dispatch(removePostAsync(id)).then(() => navigate('/'));
 			dispatch(closeModal());
 		};
 	};
@@ -64,7 +61,7 @@ export const PostToolsPanel = ({
 
 	const handlerEdit = (id) => navigate(`/post/${id}/edit`);
 
-	const isAdmin = checkAccess([ROLES.ADMIN], userRole);
+	const isAdmin = checkAccess([ROLES.ADMIN], roleId);
 
 	return (
 		<div className={styles.wrapper}>
@@ -78,7 +75,7 @@ export const PostToolsPanel = ({
 				(<>
 					<div className={styles.tools}>
 						{ isCreating || isEditing
-							? (<button className={styles.button} onClick={() => handlerSave(postId)}>
+							? (<button className={styles.button} onClick={handlerSave}>
 									<i className='fa fa-floppy-o icon icon--save icon--1-5r' aria-hidden='true'></i>
 								</button>)
 							: (<button className={styles.button} onClick={() => handlerEdit(postId)}>

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { PROP_TYPE } from '../../../../../js/constants';
+import { PROP_TYPE } from '../../../../../constants';
 import { ErrorFormInput } from '../ErrorFormInput/ErrorFormInput';
 import styles from './FormField.module.css';
 

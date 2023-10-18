@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useServerRequest } from '../../../../hooks/';
 import { userRoleSelector } from '../../../../store/selectors';
-import { PROP_TYPE, ROLES } from '../../../../../js/constants';
-import { checkAccess } from '../../../../../js/utils';
+import { PROP_TYPE, ROLES } from '../../../../../constants';
+import { checkAccess, request } from '../../../../../utils';
 import styles from './TableRow.module.css';
 
 export const TableRow = ({
@@ -20,28 +19,26 @@ export const TableRow = ({
 	const [selectedRoleId, setSelectedRoleId] = useState(roleId);
 	const [initialRoleId, setInitialRoleId] = useState(roleId);
 
-	const userRole = useSelector(userRoleSelector);
-	const requestServer = useServerRequest();
+	const currentRoleId = useSelector(userRoleSelector);
 
 	const roleOnChange = ({target}) => setSelectedRoleId(Number(target.value));
 
 	const onRoleSave = (userId, newUserRoleId) => {
-		requestServer('updateUserRole', userId, newUserRoleId).then(() => {
+		request(`/users/${userId}`, 'PATCH', { roleId: newUserRoleId }).then(() => {
 			setInitialRoleId(newUserRoleId);
 		});
 	};
-
-	const isAdmin = checkAccess([ROLES.ADMIN], userRole);
 
 	const onUserRemove = (userId) => {
 		if (!isAdmin) {
 			return;
 		}
-
-		requestServer('removeUser', userId).then(() => {
+		request(`/users/${userId}`, 'DELETE').then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList);
 		});
 	};
+
+	const isAdmin = checkAccess([ROLES.ADMIN], currentRoleId);
 
 	const isSaveButtonDisabled = selectedRoleId === initialRoleId;
 

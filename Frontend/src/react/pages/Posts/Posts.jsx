@@ -1,9 +1,8 @@
 import { useEffect, useState, useMemo } from 'react';
-import { useServerRequest } from '../../hooks';
+import { request, debounce } from '../../../utils';
+import { PAGINATION } from '../../../constants/';
 import { PostItem } from './components';
 import { Pagination, SearchField } from './components';
-import { PAGINATION } from '../../../js/constants';
-import { getLastPageFromLinks, debounce } from '../Main/utils';
 import styles from './Posts.module.css';
 
 export const Posts = () => {
@@ -13,15 +12,13 @@ export const Posts = () => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
 
-	const requestServer = useServerRequest();
-
 	useEffect(() => {
-		requestServer('fetchPosts', page, PAGINATION.limitOfElementsPerPage, searchQuery)
-			.then(({ response: { posts, links } }) => {
+		request(`/posts?search=${searchQuery}&page=${page}&limit=${PAGINATION.limitOfElementsPerPage}`)
+			.then(({ data: { posts, lastPage } }) => {
 				setPosts(posts);
-				setLastPage(getLastPageFromLinks(links));
+				setLastPage(lastPage);
 			});
-	}, [requestServer, page, shouldSearch]);
+	}, [page, shouldSearch]);
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
 
@@ -36,14 +33,14 @@ export const Posts = () => {
 			<div className={styles.postsWrapper}>
 				{posts.length > 0
 					? (<ul className={styles.postList}>
-							{posts.map(({id, title, imageUrl, publishedAt, commentsCount}, i) => (
+							{posts.map(({id, title, imageUrl, publishedAt, comments}, i) => (
 								<PostItem
 									key={i}
 									id={id}
 									title={title}
 									imageUrl={imageUrl}
 									publishedAt={publishedAt}
-									commentsCount={commentsCount}
+									commentsCount={comments.length}
 								/>)
 							)}
 						</ul>)

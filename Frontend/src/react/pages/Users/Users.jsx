@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useServerRequest } from '../../hooks';
 import { userRoleSelector } from '../../store/selectors';
+import { checkAccess, request } from '../../../utils';
+import { ROLES } from '../../../constants';
 import { Table } from './components';
 import { PrivateContent } from '../../components';
-import { checkAccess } from '../../../js/utils';
-import { ROLES } from '../../../js/constants';
 import styles from './Users.module.css';
 
 export const Users = () => {
@@ -14,30 +13,28 @@ export const Users = () => {
 	const [serverError, setServerError] = useState(null);
 	const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
 
-	const requestServer = useServerRequest();
-	const userRole = useSelector(userRoleSelector);
+	const roleId = useSelector(userRoleSelector);
 
-	const isAdmin = checkAccess([ROLES.ADMIN], userRole);
+	const isAdmin = checkAccess([ROLES.ADMIN], roleId);
 
 	useEffect(() => {
 		if (!isAdmin) {
 			return;
 		}
 
-		Promise.all([
-			requestServer('fetchUsers'),
-			requestServer('fetchRoles'),
-		]).then(([ usersResponse, rolesResponse ]) => {
-			if (usersResponse.error || rolesResponse.error) {
-				setServerError(usersResponse.error || rolesResponse.error);
+		Promise
+			.all([ request('/users'), request('/users/roles') ])
+			.then(([ usersResponse, rolesResponse ]) => {
+				if (usersResponse.error || rolesResponse.error) {
+					setServerError(usersResponse.error || rolesResponse.error);
 
-				return;
-			}
+					return;
+				}
 
-			setUsers(usersResponse.response);
-			setRoles(rolesResponse.response);
-		});
-	}, [isAdmin, requestServer, shouldUpdateUserList]);
+				setUsers(usersResponse.data);
+				setRoles(rolesResponse.data);
+			});
+	}, [isAdmin, shouldUpdateUserList]);
 
 	return (
 		<PrivateContent access={[ROLES.ADMIN]} serverError={serverError}>
