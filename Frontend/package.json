@@ -2,6 +2,7 @@
 	"name": "react-app",
 	"version": "0.1.0",
 	"private": true,
+	"proxy": "http://localhost:3001",
 	"dependencies": {
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@hookform/resolvers": "^3.3.1",
