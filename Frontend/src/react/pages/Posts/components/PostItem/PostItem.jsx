@@ -32,5 +32,5 @@ PostItem.propTypes = {
 	title: PropTypes.string.isRequired,
 	imageUrl: PropTypes.string.isRequired,
 	publishedAt: PropTypes.string.isRequired,
-	commentsCount: PropTypes.string.isRequired,
+	commentsCount: PropTypes.number.isRequired,
 };
