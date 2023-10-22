@@ -32,6 +32,8 @@ const { ROLES } = require("./constants/roles");
 const port = 3001;
 const app = express();
 
+app.use(express.static('../frontend/build'))
+
 // подключаем middlewares
 app.use(cookieParser());
 app.use(express.json());

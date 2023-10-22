@@ -9,6 +9,7 @@ module.exports = {
   },
   verify(token) {
     // передаем сюда токен и наш 'секрет'
+    console.log(token)
     if (!token) {
       throw new Error('Invalid token');
     }

@@ -45,7 +45,7 @@ async function login(login, password) {
   const token = generate({ id: user.id });
 
   // возвращаем информацию о пользователе и о токене
-  return { user, token };
+  return { token, user };
 }
 
 // get users
