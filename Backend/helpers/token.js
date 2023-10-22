@@ -1,14 +1,18 @@
 const jwt = require("jsonwebtoken");
 
 // нужна подпись для 'jsonwebtoken'
-const JWT_SECRET = process.env.JWT_SECRET;
+const sign = process.env.JWT_SECRET;
 
 module.exports = {
   generate(data) {
-    return jwt.sign(data, JWT_SECRET, { expiresIn: "30d" });
+    return jwt.sign(data, sign, { expiresIn: "30d" });
   },
   verify(token) {
     // передаем сюда токен и наш 'секрет'
-    return jwt.verify(token, JWT_SECRET);
+    if (!token) {
+      throw new Error('Invalid token');
+    }
+
+    return jwt.verify(token, sign);
   },
 };
